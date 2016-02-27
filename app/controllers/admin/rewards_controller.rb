@@ -9,7 +9,8 @@ class Admin::RewardsController < Admin::BaseController
       flash[:message] = "Reward has been created!"
       redirect_to admin_users_path
     else
-
+      flash.now[:error] = "Invalid Input"
+      render :edit
     end
   end
 
@@ -18,6 +19,20 @@ class Admin::RewardsController < Admin::BaseController
     @reward.delete
     flash[:message] = "Reward has been deleted"
     redirect_to admin_users_path
+  end
+
+  def edit
+    @reward = Reward.find(params[:id])
+  end
+
+  def update
+    @reward = Reward.find(params[:id])
+    if @reward.update(reward_params)
+      redirect_to admin_users_path
+    else
+      flash.now[:error] = "Invalid Input"
+      render :edit
+    end
   end
 
   private

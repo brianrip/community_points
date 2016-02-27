@@ -22,7 +22,7 @@
 <div id="rewards">
   <ul>
     <% @rewards.each do |reward| %>
-      <li><%= reward.name %> <%= link_to "Delete", admin_reward_path(reward), method: :delete %></li>
+      <li><%= reward.name %> <%= link_to "Edit", edit_admin_reward_path(reward) %> <%= link_to "Delete", admin_reward_path(reward), method: :delete %></li>
     <% end %>
   </ul>
 </div>
