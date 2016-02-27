@@ -8,3 +8,12 @@
     <% end %>
   </ul>
 </div>
+
+<%= link_to "Create Activity", new_activity_path %>
+<div id="activities">
+  <ul>
+    <% @activities.each do |activity| %>
+      <li><%= "#{activity.title} - #{activity.points} points" %></li>
+    <% end %>
+  </ul>
+</div>

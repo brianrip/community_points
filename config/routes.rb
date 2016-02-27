@@ -4,5 +4,7 @@ Rails.application.routes.draw do
 
   resources :admin, only: [:index]
 
+  resources :activities
+
   resources :users
 end
