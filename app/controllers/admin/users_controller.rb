@@ -2,6 +2,7 @@ class Admin::UsersController < Admin::BaseController
   def index
     @users = User.where(role: 0)
     @activities = Activity.all
+    @rewards = Reward.all
   end
 
   def destroy
