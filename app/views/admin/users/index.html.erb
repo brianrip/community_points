@@ -17,3 +17,12 @@
     <% end %>
   </ul>
 </div>
+
+<%= link_to "Create Reward", new_admin_reward_path %>
+<div id="rewards">
+  <ul>
+    <% @rewards.each do |reward| %>
+      <li><%= reward.name %></li>
+    <% end %>
+  </ul>
+</div>
