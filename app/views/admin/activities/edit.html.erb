@@ -1,0 +1,7 @@
+<%= form_for [:admin, @activity] do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <%= f.label :points %>
+  <%= f.text_field :points %>
+  <%= f.submit "Update Activity" %>
+<% end %>

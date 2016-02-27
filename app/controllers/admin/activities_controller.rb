@@ -14,6 +14,20 @@ class Admin::ActivitiesController < Admin::BaseController
     end
   end
 
+  def edit
+    @activity = Activity.find(params[:id])
+  end
+
+  def update
+    @activity = Activity.find(params[:id])
+    if @activity.update(activity_params)
+      redirect_to admin_users_path
+    else
+      flash.now[:error] = "Invalid Activity"
+      render :edit
+    end
+  end
+
   private
 
   def activity_params

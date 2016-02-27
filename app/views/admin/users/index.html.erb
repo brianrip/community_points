@@ -13,7 +13,7 @@
 <div id="activities">
   <ul>
     <% @activities.each do |activity| %>
-      <li><%= "#{activity.title} - #{activity.points} points" %></li>
+      <li><%= "#{activity.title} - #{activity.points} points" %>  <%= link_to 'Edit', edit_admin_activity_path(activity)%></li>
     <% end %>
   </ul>
 </div>
