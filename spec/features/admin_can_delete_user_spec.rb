@@ -8,12 +8,9 @@ RSpec.feature "admin can delete user" do
     user1 = User.create(username: "Jack", password: "password")
     user2 = User.create(username: "Nick", password: "password")
 
-    visit '/'
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    fill_in "Username", with: "Brian"
-    fill_in "Password", with: "password"
-
-    click_on "Login"
+    visit admin_users_path
 
     expect(page).to have_content "Buh Bye"
     expect(page).to have_content "Jack"

@@ -5,11 +5,9 @@ RSpec.feature 'Admin can update a user' do
     admin = User.create(username: "Scott", password: 'password', role: 1)
     user = User.create(username: 'old_name', password: 'password')
 
-    visit root_path
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    fill_in 'Username', with: "Scott"
-    fill_in 'Password', with: 'password'
-    click_on 'Login'
+    visit admin_users_path
 
     click_on 'Edit'
 
