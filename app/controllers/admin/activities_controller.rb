@@ -28,6 +28,13 @@ class Admin::ActivitiesController < Admin::BaseController
     end
   end
 
+  def destroy
+    @activity = Activity.find(params[:id])
+    @activity.delete
+
+    redirect_to admin_users_path
+  end
+
   private
 
   def activity_params
