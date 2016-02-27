@@ -4,11 +4,9 @@ RSpec.feature "Admin creates a new user" do
   scenario "they can see the new user in the users index" do
     admin = User.create(username: "Scott", password: "password", role: 1)
 
-    visit "/"
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    fill_in "Username", with: "Scott"
-    fill_in "Password", with: "password"
-    click_on "Login"
+    visit admin_users_path
 
     expect(page).to have_content "Welcome Admin"
 
@@ -31,10 +29,9 @@ RSpec.feature "Admin creates a new user" do
     user1 = User.create(username: "Scott", password: 'password')
     user2 = User.create(username: "Thanks", password: 'password')
 
-    visit "/"
-    fill_in "Username", with: "Brian"
-    fill_in "Password", with: "password"
-    click_on "Login"
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
+
+    visit admin_users_path
 
     within(:css, "#students") do
       expect(page).to have_content "Scott"

@@ -1,14 +1,12 @@
 require 'rails_helper'
 
-RSpec.feature 'admin can cruc activities' do
+RSpec.feature 'admin can create and view activities' do
   scenario 'admin can view list of created activities' do
     admin = User.create(username: "Scott", password: "password", role: 1)
 
-    visit "/"
+    allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(admin)
 
-    fill_in "Username", with: "Scott"
-    fill_in "Password", with: "password"
-    click_on "Login"
+    visit admin_users_path
 
     click_on "Create Activity"
 
@@ -18,7 +16,7 @@ RSpec.feature 'admin can cruc activities' do
 
 
     within(:css, "#activities") do
-      expect(page).to have_content "Flush toilet - 5 points "
+      expect(page).to have_content "Flush toilet - 5 points"
     end
   end
 end

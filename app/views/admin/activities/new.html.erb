@@ -1,7 +1,7 @@
-<%= form_for @activity do |f| %>
+<%= form_for [:admin, @activity] do |f| %>
   <%= f.label :title %>
   <%= f.text_field :title %>
   <%= f.label :points %>
   <%= f.text_field :points %>
-  <%= f.submit "Create Actitity" %>
+  <%= f.submit "Create Activity" %>
 <% end %>
