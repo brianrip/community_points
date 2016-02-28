@@ -3,14 +3,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @activities = Activity.all
     @user_activity = UserActivity.new
+    @user_activities = @user.activities.all
   end
 
   def create
-    @user = User.find(params[:user_activity][:id])
-    @activity = Activity.find(params[:user_activity][:id])
-    @user_activity = UserActivity.create(user_id: @user.id, activity_id: @activity.id)
+    @user = User.find(params[:id])
+    @activities = Activity.all
+    # @user_activity = UserActivity.new(params[:activity_id], params[:user_id])
+    @user_activity = UserActivity.create(user_id: params[:id], activity_id: params[:user_activity][:activity_id])
+
     redirect_to user_path(@user)
-    require 'pry', binding.pry
   end
 
   private

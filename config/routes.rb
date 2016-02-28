@@ -6,8 +6,7 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show]
 
-
-  resources :admin, only: [:index]
+  resources :admins, only: [:index]
 
   namespace :admin do
     resources :users, only: [:index, :new, :create, :edit, :update, :destroy]
