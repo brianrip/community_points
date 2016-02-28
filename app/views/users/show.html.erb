@@ -1,0 +1,7 @@
+<h1>Welcome, <%= @user.username %>!</h1>
+
+<%= form_for(@user_activity, url: user_path(@user)) do |f| %>
+<%= f.collection_select(:activity_id, @activities, :id, :title, { :prompt => 'Select Activity' } ) %>
+<%= f.submit 'Select activity' %>
+
+<% end %>
