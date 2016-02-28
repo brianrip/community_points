@@ -16,7 +16,17 @@ RSpec.feature 'User can view a completed activity' do
 
     select('Kids who Code', :from => 'user_activity[activity_id]')
     click_on 'Select activity'
-    save_and_open_page
+
     expect(page).to have_content("Kids who Code - 20")
+  end
+
+  scenario 'they can see the point total' do
+    user = User.create(username: "Lucy", password: 'password')
+    user.activities.create(title: 'Repeat module 2', points: 500)
+    user.activities.create(title: 'Pass module 2', points: 100)
+
+    visit user_path(user)
+
+    expect(page).to have_content("Total Points - 600")
   end
 end

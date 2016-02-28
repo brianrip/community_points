@@ -12,4 +12,8 @@ class User < ActiveRecord::Base
       "/users/#{self.id}"
     end
   end
+
+  def total_points
+    activities.pluck(:points).inject(:+) || 0
+  end
 end
