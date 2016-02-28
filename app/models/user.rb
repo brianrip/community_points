@@ -1,13 +1,15 @@
 class User < ActiveRecord::Base
-  has_secure_password
+  has_many :activities, through: :user_activities
+  has_many :user_activities
 
+  has_secure_password
   enum role: ["default", "admin"]
 
   def authorize_session
     if admin?
-      '/admin'
+      '/admin/users'
     else
-      "/user/#{current_user.id}"
+      "/users/#{self.id}"
     end
   end
 end
