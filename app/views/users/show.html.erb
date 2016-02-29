@@ -1,5 +1,7 @@
 <h1>Welcome, <%= @user.username %>!</h1>
 
+<%= link_to "Redeem Reward", rewards_path %>
+
 <%= form_for(@user_activity, url: user_path(@user)) do |f| %>
   <div>
     <%= f.collection_select(:activity_id, @activities, :id, :title, prompt: 'Select Activity') %>
@@ -12,6 +14,15 @@
     <li><%= ua.title %> - <%= ua.points %></li>
   </ul>
 <% end %>
+
+<% @user_rewards.each do |ur| %>
+  <ul>
+    <%= ur.name %>
+    <%= ur.description %>
+    <%= ur.picture %>
+  </ul>
+<% end %>
+
 <p>
   Total Points - <%= @user.total_points %>
 </p>

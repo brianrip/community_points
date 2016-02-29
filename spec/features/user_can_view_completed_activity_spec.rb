@@ -27,6 +27,6 @@ RSpec.feature 'User can view a completed activity' do
 
     visit user_path(user)
 
-    expect(page).to have_content("Total Points - 600")
+    expect(page).to have_content("Total Points - #{user.total_points}")
   end
 end

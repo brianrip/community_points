@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160228005315) do
+ActiveRecord::Schema.define(version: 20160229005554) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,14 +43,27 @@ ActiveRecord::Schema.define(version: 20160228005315) do
   add_index "user_activities", ["activity_id"], name: "index_user_activities_on_activity_id", using: :btree
   add_index "user_activities", ["user_id"], name: "index_user_activities_on_user_id", using: :btree
 
+  create_table "user_rewards", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "reward_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "user_rewards", ["reward_id"], name: "index_user_rewards_on_reward_id", using: :btree
+  add_index "user_rewards", ["user_id"], name: "index_user_rewards_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "username"
     t.string   "password_digest"
     t.integer  "role",            default: 0
     t.datetime "created_at",                  null: false
     t.datetime "updated_at",                  null: false
+    t.integer  "points",          default: 0
   end
 
   add_foreign_key "user_activities", "activities"
   add_foreign_key "user_activities", "users"
+  add_foreign_key "user_rewards", "rewards"
+  add_foreign_key "user_rewards", "users"
 end
