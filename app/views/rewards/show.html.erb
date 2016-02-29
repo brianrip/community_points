@@ -1,0 +1,7 @@
+<h1><%= @reward.name %></h1>
+
+<%= @reward.description %>
+<%= @reward.point_cost %>
+<%= @reward.picture %>
+
+<%= link_to "Claim Reward", reward_path(@reward), method: :post %>

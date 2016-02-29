@@ -4,14 +4,14 @@ class UsersController < ApplicationController
     @activities = Activity.all
     @user_activity = UserActivity.new
     @user_activities = @user.activities.all
+    @user_rewards = @user.rewards.all
   end
 
   def create
     @user = User.find(params[:id])
     @activities = Activity.all
-    # @user_activity = UserActivity.new(params[:activity_id], params[:user_id])
     @user_activity = UserActivity.create(user_id: params[:id], activity_id: params[:user_activity][:activity_id])
-
+    @user.earn_activity_points(params[:user_activity][:activity_id])
     redirect_to user_path(@user)
   end
 
